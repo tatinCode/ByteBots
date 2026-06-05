@@ -3,13 +3,14 @@ motor/
 ├── build/
 │   └── esp32/
 ├── esp32/
-│   └── motor_control/
-│       ├── motor_control.ino
-│       └── src/
-│           ├── motor.c
-│           ├── motor.h
-│           ├── commands.c
-│           └── commands.h
+│   ├── main/
+│   │   └── main.ino
+│   └── lib/
+│       └── L298NMotorDriver/
+│           ├── src/
+│           │   ├── L298NMotorDriver.cpp
+│           │   └── L298NMotorDriver.h
+│           └── library.properties
 ├── pi/
 │   ├── makefile
 │   ├── build/
@@ -17,6 +18,8 @@ motor/
 │   └── src/
 │       └── main.c
 ├── docs/
-│   ├── protocol.md
+│   ├── structure.md
+│   ├── writeup.md
 │   └── wiring.md
 └── README.md
+
