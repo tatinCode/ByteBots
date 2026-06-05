@@ -92,7 +92,6 @@ int main(int argc, char **argv)
 
 } // main
 
-
 //
 // Set up a memory regions to access GPIO
 //
