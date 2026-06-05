@@ -10,8 +10,8 @@
 
 #define MAX_SPEED 180
 
-L298NMotorDriver front(19, 18, 5, 4, 17, 16);
-L298NMotorDriver back(14, 27, 26, 32, 25, 33);
+L298NMotorDriver front(19, 18, 5, true, 4, 17, 16, false);
+L298NMotorDriver back(14, 27, 26, true, 32, 25, 33, false);
 
 void setup() {
   // put your setup code here, to run once:
@@ -26,7 +26,7 @@ void loop() {
   front.setMotorB(MAX_SPEED);
   back.setMotorA(MAX_SPEED);
   back.setMotorB(MAX_SPEED);
-  delay(2 * 1000);
+  delay(1000);
 
   front.stop();
   back.stop();
@@ -36,9 +36,35 @@ void loop() {
   front.setMotorB(-MAX_SPEED);
   back.setMotorA(-MAX_SPEED);
   back.setMotorB(-MAX_SPEED);
-  delay(2 * 1000);
+  delay(1000);
   
   front.stop();
   back.stop();
   delay(5 * 1000);
+
+  /**
+    front.stop();
+    back.stop();
+    delay(2000);
+
+    front.setMotorA(180);
+    delay(2000);
+    front.stop();
+    delay(2000);
+
+    front.setMotorB(180);
+    delay(2000);
+    front.stop();
+    delay(2000);
+
+    back.setMotorA(180);
+    delay(2000);
+    back.stop();
+    delay(2000);
+
+    back.setMotorB(180);
+    delay(2000);
+    back.stop();
+    delay(5000);
+    */
 }

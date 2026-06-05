@@ -8,15 +8,19 @@
  */
 #include "L298NMotorDriver.h"
 
-L298NMotorDriver::L298NMotorDriver(uint8_t ena, uint8_t in1, uint8_t in2, uint8_t enb, uint8_t in3, uint8_t in4)
+L298NMotorDriver::L298NMotorDriver(
+        uint8_t ena, uint8_t in1, uint8_t in2, bool invertA,
+        uint8_t enb, uint8_t in3, uint8_t in4, bool invertB
+        )
     :_ena(ena),
     _in1(in1),
     _in2(in2),
+    _invertA(invertA),
     _enb(enb),
     _in3(in3),
-    _in4(in4) {
+    _in4(in4),
+    _invertB(invertB) {
 }
-
 
 void L298NMotorDriver::init() {
     pinMode(_in1, OUTPUT);
@@ -31,11 +35,18 @@ void L298NMotorDriver::init() {
 }
 
 void L298NMotorDriver::setMotorA(int speed){
-    setMotor(_ena, _in1, _in2, speed);
+    if(_invertA){
+        speed = -speed;
+    }
 
+    setMotor(_ena, _in1, _in2, speed);
 }
 
 void L298NMotorDriver::setMotorB(int speed){
+    if(_invertB){
+        speed = -speed;
+    }
+
     setMotor(_enb, _in3, _in4, speed);
 }
 
