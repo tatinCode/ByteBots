@@ -1,0 +1,169 @@
+[
+  {
+    "added_include_path": "/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32"
+  },
+  {
+    "added_include_path": "/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/variants/esp32"
+  },
+  {
+    "compile": {
+      "source_path": "/home/tatin/projects/ardu/motor/build/esp32/sketch/main.ino.cpp",
+      "object_path": "/home/tatin/projects/ardu/motor/build/esp32/sketch/main.ino.cpp.o",
+      "depfile_path": "/home/tatin/projects/ardu/motor/build/esp32/sketch/main.ino.cpp.d"
+    },
+    "compile_task": {
+      "args": [
+        "/home/tatin/.arduino15/packages/esp32/tools/esp-x32/2601/bin/xtensa-esp32-elf-g++",
+        "-c",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/cpp_flags",
+        "-w",
+        "-Os",
+        "-Werror=return-type",
+        "-w",
+        "-x",
+        "c++",
+        "-E",
+        "-CC",
+        "-DF_CPU=240000000L",
+        "-DARDUINO=10607",
+        "-DARDUINO_ESP32_DEV",
+        "-DARDUINO_ARCH_ESP32",
+        "-DARDUINO_BOARD=\"ESP32_DEV\"",
+        "-DARDUINO_VARIANT=\"esp32\"",
+        "-DARDUINO_PARTITION_default",
+        "-DARDUINO_HOST_OS=\"linux\"",
+        "-DARDUINO_FQBN=\"esp32:esp32:esp32\"",
+        "-DESP32=ESP32",
+        "-DCORE_DEBUG_LEVEL=0",
+        "-DARDUINO_RUNNING_CORE=1",
+        "-DARDUINO_EVENT_RUNNING_CORE=1",
+        "-DARDUINO_USB_CDC_ON_BOOT=0",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/defines",
+        "-I/home/tatin/projects/ardu/motor/esp32/main",
+        "-iprefix",
+        "/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/includes",
+        "-I/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/qio_qspi/include",
+        "-I/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32",
+        "-I/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/variants/esp32",
+        "@/home/tatin/projects/ardu/motor/build/esp32/build_opt.h",
+        "@/home/tatin/projects/ardu/motor/build/esp32/file_opts",
+        "/home/tatin/projects/ardu/motor/build/esp32/sketch/main.ino.cpp",
+        "-o",
+        "/dev/null"
+      ]
+    }
+  },
+  {
+    "missing_include_h": "L298NMotorDriver.h"
+  },
+  {
+    "added_include_path": "/home/tatin/projects/ardu/motor/esp32/lib/L298NMotorDriver/src"
+  },
+  {
+    "compile": {
+      "source_path": "/home/tatin/projects/ardu/motor/build/esp32/sketch/main.ino.cpp",
+      "object_path": "/home/tatin/projects/ardu/motor/build/esp32/sketch/main.ino.cpp.o",
+      "depfile_path": "/home/tatin/projects/ardu/motor/build/esp32/sketch/main.ino.cpp.d"
+    },
+    "compile_task": {
+      "args": [
+        "/home/tatin/.arduino15/packages/esp32/tools/esp-x32/2601/bin/xtensa-esp32-elf-g++",
+        "-c",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/cpp_flags",
+        "-w",
+        "-Os",
+        "-Werror=return-type",
+        "-w",
+        "-x",
+        "c++",
+        "-E",
+        "-CC",
+        "-DF_CPU=240000000L",
+        "-DARDUINO=10607",
+        "-DARDUINO_ESP32_DEV",
+        "-DARDUINO_ARCH_ESP32",
+        "-DARDUINO_BOARD=\"ESP32_DEV\"",
+        "-DARDUINO_VARIANT=\"esp32\"",
+        "-DARDUINO_PARTITION_default",
+        "-DARDUINO_HOST_OS=\"linux\"",
+        "-DARDUINO_FQBN=\"esp32:esp32:esp32\"",
+        "-DESP32=ESP32",
+        "-DCORE_DEBUG_LEVEL=0",
+        "-DARDUINO_RUNNING_CORE=1",
+        "-DARDUINO_EVENT_RUNNING_CORE=1",
+        "-DARDUINO_USB_CDC_ON_BOOT=0",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/defines",
+        "-I/home/tatin/projects/ardu/motor/esp32/main",
+        "-iprefix",
+        "/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/includes",
+        "-I/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/qio_qspi/include",
+        "-I/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32",
+        "-I/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/variants/esp32",
+        "-I/home/tatin/projects/ardu/motor/esp32/lib/L298NMotorDriver/src",
+        "@/home/tatin/projects/ardu/motor/build/esp32/build_opt.h",
+        "@/home/tatin/projects/ardu/motor/build/esp32/file_opts",
+        "/home/tatin/projects/ardu/motor/build/esp32/sketch/main.ino.cpp",
+        "-o",
+        "/dev/null"
+      ]
+    }
+  },
+  {
+    "missing_include_h": ""
+  },
+  {
+    "compile": {
+      "source_path": "/home/tatin/projects/ardu/motor/esp32/lib/L298NMotorDriver/src/L298NMotorDriver.cpp",
+      "object_path": "/home/tatin/projects/ardu/motor/build/esp32/libraries/L298NMotorDriver/L298NMotorDriver.cpp.o",
+      "depfile_path": "/home/tatin/projects/ardu/motor/build/esp32/libraries/L298NMotorDriver/L298NMotorDriver.cpp.d"
+    },
+    "compile_task": {
+      "args": [
+        "/home/tatin/.arduino15/packages/esp32/tools/esp-x32/2601/bin/xtensa-esp32-elf-g++",
+        "-c",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/cpp_flags",
+        "-w",
+        "-Os",
+        "-Werror=return-type",
+        "-w",
+        "-x",
+        "c++",
+        "-E",
+        "-CC",
+        "-DF_CPU=240000000L",
+        "-DARDUINO=10607",
+        "-DARDUINO_ESP32_DEV",
+        "-DARDUINO_ARCH_ESP32",
+        "-DARDUINO_BOARD=\"ESP32_DEV\"",
+        "-DARDUINO_VARIANT=\"esp32\"",
+        "-DARDUINO_PARTITION_default",
+        "-DARDUINO_HOST_OS=\"linux\"",
+        "-DARDUINO_FQBN=\"esp32:esp32:esp32\"",
+        "-DESP32=ESP32",
+        "-DCORE_DEBUG_LEVEL=0",
+        "-DARDUINO_RUNNING_CORE=1",
+        "-DARDUINO_EVENT_RUNNING_CORE=1",
+        "-DARDUINO_USB_CDC_ON_BOOT=0",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/defines",
+        "-I/home/tatin/projects/ardu/motor/esp32/main",
+        "-iprefix",
+        "/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/",
+        "@/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/flags/includes",
+        "-I/home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/qio_qspi/include",
+        "-I/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32",
+        "-I/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/variants/esp32",
+        "-I/home/tatin/projects/ardu/motor/esp32/lib/L298NMotorDriver/src",
+        "@/home/tatin/projects/ardu/motor/build/esp32/build_opt.h",
+        "@/home/tatin/projects/ardu/motor/build/esp32/file_opts",
+        "/home/tatin/projects/ardu/motor/esp32/lib/L298NMotorDriver/src/L298NMotorDriver.cpp",
+        "-o",
+        "/dev/null"
+      ]
+    }
+  },
+  {
+    "missing_include_h": ""
+  }
+]

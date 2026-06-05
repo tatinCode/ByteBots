@@ -1,0 +1,9 @@
+{
+  "additionalFiles": "",
+  "compiler.optimization_flags": "-Os",
+  "customBuildProperties": "",
+  "fqbn": "esp32:esp32:esp32",
+  "hardwareFolders": "/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8,/home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8",
+  "otherLibrariesFolders": "/home/tatin/projects/ardu/motor/esp32/lib,/home/tatin/Arduino/libraries",
+  "sketchLocation": "/home/tatin/projects/ardu/motor/esp32/main"
+}

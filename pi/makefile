@@ -20,11 +20,11 @@ LDLIBS =
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	mkdir -p $(BIN_DIR)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
 
 $(BUILD_DIR)/%.o: %.c
-	mkdir -p $(BUILD_DIR)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run: $(TARGET)

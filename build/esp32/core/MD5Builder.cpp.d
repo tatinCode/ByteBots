@@ -1,0 +1,20 @@
+/home/tatin/projects/ardu/motor/build/esp32/core/MD5Builder.cpp.o: \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/MD5Builder.cpp \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/HEXBuilder.h \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/WString.h \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/pgmspace.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/newlib/platform_include/ctype.h \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/Stream.h \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/Print.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/newlib/platform_include/stdio.h \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/WString.h \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/Printable.h \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/MD5Builder.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/esp_system/include/esp_system.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/esp_common/include/esp_err.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/esp_common/include/esp_compiler.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/esp_common/include/esp_attr.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/esp_common/include/esp_bit_defs.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/esp_common/include/esp_idf_version.h \
+ /home/tatin/.arduino15/packages/esp32/tools/esp32-libs/3.3.8/include/esp_rom/include/esp_rom_md5.h \
+ /home/tatin/.arduino15/packages/esp32/hardware/esp32/3.3.8/cores/esp32/HashBuilder.h
