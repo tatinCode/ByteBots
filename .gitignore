@@ -1,0 +1,31 @@
+# Build outputs
+build/
+pi/build/
+pi/bin/
+
+# Arduino CLI artifacts
+*.elf
+*.bin
+*.map
+*.o
+*.d
+*.a
+*.hex
+*.uf2
+compile_commands.json
+
+# Camera/test captures
+*.jpg
+*.jpeg
+*.png
+*.h264
+*.mp4
+
+# Logs and runtime files
+*.log
+
+# Editor/OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
