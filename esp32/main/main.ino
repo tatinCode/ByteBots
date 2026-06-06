@@ -22,49 +22,5 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  front.setMotorA(MAX_SPEED);
-  front.setMotorB(MAX_SPEED);
-  back.setMotorA(MAX_SPEED);
-  back.setMotorB(MAX_SPEED);
-  delay(1000);
 
-  front.stop();
-  back.stop();
-  delay(2 * 1000);
-
-  front.setMotorA(-MAX_SPEED);
-  front.setMotorB(-MAX_SPEED);
-  back.setMotorA(-MAX_SPEED);
-  back.setMotorB(-MAX_SPEED);
-  delay(1000);
-  
-  front.stop();
-  back.stop();
-  delay(5 * 1000);
-
-  /**
-    front.stop();
-    back.stop();
-    delay(2000);
-
-    front.setMotorA(180);
-    delay(2000);
-    front.stop();
-    delay(2000);
-
-    front.setMotorB(180);
-    delay(2000);
-    front.stop();
-    delay(2000);
-
-    back.setMotorA(180);
-    delay(2000);
-    back.stop();
-    delay(2000);
-
-    back.setMotorB(180);
-    delay(2000);
-    back.stop();
-    delay(5000);
-    */
 }

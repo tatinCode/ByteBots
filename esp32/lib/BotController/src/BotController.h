@@ -20,8 +20,8 @@ class BotController {
         void stop();
 
     private:
-        L298NMotorDriver& _front;
-        L298NMotorDriver& _back;
+        L298NMotorDriver _front;
+        L298NMotorDriver _back;
 
         void setWheels(int front_left, int front_right, int rear_left, int rear_right);
 };
