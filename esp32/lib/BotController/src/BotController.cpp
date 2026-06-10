@@ -48,11 +48,11 @@ void BotController::slight_right(int speed){
 }
 
 void BotController::shift_left(int speed){
-    setWheels(-speed, -speed, speed, speed);
+    setWheels(speed, -speed, -speed, speed);
 }
 
 void BotController::shift_right(int speed){
-    setWheels(speed, speed, -speed, -speed);
+    setWheels(-speed, speed, speed, -speed);
 }
 
 void BotController::setWheels(int front_left, int front_right, int rear_left, int rear_right){

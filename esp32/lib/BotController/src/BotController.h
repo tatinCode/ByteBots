@@ -1,5 +1,7 @@
 #pragma once
 
+#include "L298NMotorDriver.h"
+
 #include <Arduino.h>
 
 class BotController {
@@ -7,6 +9,7 @@ class BotController {
         BotController();
 
         void init();
+        void update();
 
         void forward(int speed);
         void backward(int speed);
