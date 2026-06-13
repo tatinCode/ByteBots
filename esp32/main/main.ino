@@ -9,12 +9,11 @@
 
 #include <BotController.h>
 
-#define MAX_SPEED 180
-
 BotController bot;
 
 void setup() {
   // put your setup code here, to run once:
+  Serial.begin(115200);
   bot.init();
 }
 
