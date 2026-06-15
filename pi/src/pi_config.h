@@ -6,3 +6,5 @@
 #define LOOP_DELAY_US 100 * 1000
 #define DEBOUNCE_US 200
 
+#define ESP32_DEVICE "/dev/ttyUSB0"
+#define ESP32_SERIAL_BAUD_RATE 115200
