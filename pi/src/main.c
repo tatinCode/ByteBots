@@ -5,8 +5,15 @@
 
 
 int main(void){
-    car_controller_init();
+    if(car_controller_init() < 0){
+        return 1;
+    }
 
+    /**
+     * Starts the car controller loop
+     * This function will block until the car controller loop is stopped
+     * by the car controller cleanup function
+     */
     car_controller_loop();
 
     car_controller_cleanup();
