@@ -76,7 +76,14 @@ void car_controller_loop(volatile sig_atomic_t *keep_running) {
 }
 
 void car_controller_cleanup() {
+    if(esp32_fd >= 0){
+        esp32_serial_send(esp32_fd,"S\n");
+        esp32_serial_send(esp32_fd,"DISARM\n");
+        esp32_serial_close(esp32_fd);
+        esp32_fd = -1;
+    }
 
+    pi_mmio_close();
 }
 
 static uint64_t get_time_us() {
