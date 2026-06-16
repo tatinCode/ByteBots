@@ -4,14 +4,25 @@
 #include "pi_mmio.h"
 #include "pi_config.h"
 
-#include <signal.h>
 #include <stdint.h>
+#include <unistd.h>
+#include <signal.h>
 #include <time.h>
 
+/**
+ * Globals
+ */
+static int esp32_fd = -1;
+static int robot_running = 0;
+
+/**
+ * prototypes
+ */
+static uint64_t get_time_us();
 
 
 int car_controller_init() {
-    int esp32_fd = esp32_serial_open(ESP32_DEVICE);
+    esp32_fd = esp32_serial_open(ESP32_DEVICE);
     if(esp32_fd < 0){
         return -1;
     }
@@ -30,14 +41,14 @@ int car_controller_init() {
     return 0;
 }
 
-void car_controller_loop(sigatomic_t *keep_running) {
+void car_controller_loop(volatile sig_atomic_t *keep_running) {
     int was_pressed = 0;
     uint64_t last_button_press_us = 0;
 
-    while(keep_running) {
+    while(*keep_running) {
         uint64_t now_us = get_time_us();
         int pressed = pi_gpio_read(BUTTON_GPIO) == 0;
-        int debounce_elapsed = now_us - last_button_press_us > DEBOUNCE_TIME_US;
+        int debounce_elapsed = now_us - last_button_press_us > DEBOUNCE_US;
 
         if(pressed && !was_pressed && debounce_elapsed){
             last_button_press_us = now_us;
