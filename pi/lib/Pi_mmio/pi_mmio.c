@@ -53,7 +53,7 @@ void printButton(int g)
 //
 // Set up a memory regions to access GPIO
 //
-int pi_mmio_initp() {
+int pi_mmio_init() {
     /* open /dev/mem */
     mem_fd = open("/dev/mem", O_RDWR|O_SYNC);
     if (mem_fd < 0) {
@@ -120,9 +120,20 @@ void pi_gpio_set_pull_up(int pin){
         return;
     }
     
-    int reg = GPIO_PUP_PDN_CNTRL_REG0 + (pin / 10);
+    int reg = GPIO_PUP_PDN_CNTRL_REG0 + (pin / 16);
+    int shift = (pin % 16) * 2;
+
+    gpio[reg] &= ~(3u << shift);
+    gpio[reg] |= (1u << shift);
 }
 
+int pi_gpio_read(int pin){
+    if(gpio == NULL){
+        return -1;
+    }
+
+    return (gpio[GPIO_LEV0] & (1u << pin)) != 0;
+}
 
 /**
  *
