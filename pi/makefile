@@ -12,7 +12,7 @@ OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 INCLUDES = $(wildcard $(LIB_DIR)/*)
 
-CFLAGS = -Wall -Wextra -O2 $(addprefix -I, $(INCLUDES))
+CFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES))
 LDLIBS = 
 
 .PHONY: all run clean
