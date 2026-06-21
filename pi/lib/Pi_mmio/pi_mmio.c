@@ -8,6 +8,7 @@
 
 
 // Access from ARM Running Linux
+#include "pi_mmio.h"
 
 #define BCM2711_PERI_BASE        0xFE000000
 #define GPIO_BASE                (BCM2711_PERI_BASE + 0x200000) /* GPIO controller */
@@ -28,27 +29,12 @@ static void *gpio_map = NULL;
 static volatile uint32_t *gpio = NULL;
 //volatile unsigned *gpio;
 
-
-// GPIO setup macros. Always use INP_GPIO(x) before using OUT_GPIO(x) or SET_GPIO_ALT(x,y)
-#define INP_GPIO(g) *(gpio+((g)/10)) &= ~(7<<(((g)%10)*3))
-#define OUT_GPIO(g) *(gpio+((g)/10)) |=  (1<<(((g)%10)*3))
-#define SET_GPIO_ALT(g,a) *(gpio+(((g)/10))) |= (((a)<=3?(a)+4:(a)==4?3:2)<<(((g)%10)*3))
-
-#define GPIO_SET *(gpio+7)  // sets   bits which are 1 ignores bits which are 0
-#define GPIO_CLR *(gpio+10) // clears bits which are 1 ignores bits which are 0
-
-#define GET_GPIO(g) (*(gpio+13)&(1<<g)) // 0 if LOW, (1<<g) if HIGH
-
-#define GPIO_PULL *(gpio+37) // Pull up/pull down
-#define GPIO_PULLCLK0 *(gpio+38) // Pull up/pull down clock
-
-void printButton(int g)
-{
-  if (GET_GPIO(g)) // !=0 <-> bit is 1 <- port is HIGH=3.3V
-    printf("Button pressed!\n");
-  else // port is LOW=0V
-    printf("Button released!\n");
-}
+//using new registers. might delete the old ones above
+#define GPIO_FSEL0 0
+#define GPIO_SET0 7
+#define GPIO_CLR0 10
+#define GPIO_LEV0 13
+#define GPIO_PUP_PDN_CNTRL_REG0 57
 
 //
 // Set up a memory regions to access GPIO
