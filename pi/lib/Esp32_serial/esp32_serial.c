@@ -1,7 +1,5 @@
 #include "esp32_serial.h"
 
-#include "pi_config.h"
-
 #include <errno.h>
 #include <fcntl.h>
 #include <stddef.h>
@@ -9,8 +7,10 @@
 #include <termios.h>
 #include <unistd.h>
 
+static int configure_serial(int fd);
+
 int esp32_serial_open(const char *device){
-    int fd = open(device, O_RDWR | O_NOCTTY | O_NONBLOCK);
+    int fd = open(device, O_RDWR | O_NOCTTY | O_SYNC);
 
     if(fd < 0){
         return -1;
@@ -42,11 +42,14 @@ int esp32_serial_send(int fd, const char *command){
         ssize_t written = write(fd, command + written_tot, len - written_tot);
 
         if(written < 0){
-            if(errno == EAGAIN){
+            if(errno == EAGAIN || errno == EINTR || errno == EWOULDBLOCK){
                 continue;
             }
-
             return -1;
+        }
+
+        if(written == 0){
+            continue;
         }
 
         written_tot += (size_t)written;
