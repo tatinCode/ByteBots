@@ -7,7 +7,9 @@ BIN_DIR = bin
 LIB_DIR = lib
 
 SRCS = $(wildcard $(SRC_DIR)/*.c) \
-	   $(wildcard $(LIB_DIR)/*/*.c)
+	   $(wildcard $(LIB_DIR)/ESP32_serial/*.c) \
+	   $(wildcard $(LIB_DIR)/Pi_mmio/*.c) \
+
 OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 INCLUDES = $(wildcard $(LIB_DIR)/*)
