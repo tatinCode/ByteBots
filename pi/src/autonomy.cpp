@@ -1,7 +1,15 @@
 #include "autonomy.h"
 
+#include "camera.h"
+
+#define CAMERA_WIDTH 640
+#define CAMERA_HEIGHT 480
+
+#define AI_INPUT_WIDTH 640
+#define AI_INPUT_HEIGHT 640
+
 int autonomy_init(void){
-    return 0;
+    return camera_init(CAMERA_WIDTH, CAMERA_HEIGHT);
 }
 
 const char *autonomy_next_command(void){
