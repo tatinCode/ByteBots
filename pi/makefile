@@ -1,4 +1,5 @@
 CC = gcc
+CXX = g++
 TARGET = bin/pi-controller
 
 SRC_DIR = src
@@ -6,15 +7,22 @@ BUILD_DIR = build
 BIN_DIR = bin
 LIB_DIR = lib
 
-SRCS = $(wildcard $(SRC_DIR)/*.c) \
+C_SRCS = $(wildcard $(SRC_DIR)/*.c) \
 	   $(wildcard $(LIB_DIR)/Esp32_serial/*.c) \
-	   $(wildcard $(LIB_DIR)/Pi_mmio/*.c) \
+	   $(wildcard $(LIB_DIR)/Pi_mmio/*.c) 
 
-OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRCS))
+CPP_SRCS = $(wildcard $(SRC_DIR)/*.cpp) \
+		   $(wildcard $(LIB_DIR)/Camera/*.cpp)
+
+C_OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(C_SRCS))
+CPP_OBJS = $(patsubst %.cpp, $(BUILD_DIR)/%.o, $(CPP_SRCS))
+
+OBJS = $(C_OBJS) $(CPP_OBJS)
 
 INCLUDES = $(wildcard $(LIB_DIR)/*)
 
 CFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES))
+CXXFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES))
 LDLIBS = 
 
 .PHONY: all run clean
@@ -23,11 +31,15 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDLIBS)
 
 $(BUILD_DIR)/%.o: %.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: %.cpp
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 run: $(TARGET)
 	./$(TARGET)

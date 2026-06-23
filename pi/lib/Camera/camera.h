@@ -1,6 +1,8 @@
 #pragma once
 
-#ifdef _cplusplus
+#include <stdint.h>
+
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -14,9 +16,8 @@ typedef struct {
 int camera_init(int width, int height);
 int camera_capture(CameraFrame *frame);
 void camera_release_frame(CameraFrame *frame);
-void camera_cleanup();
+void camera_cleanup(void);
 
-
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 #endif

@@ -3,6 +3,7 @@
 #include "esp32_serial.h"
 #include "pi_mmio.h"
 #include "pi_config.h"
+#include "autonomy.h"
 
 #include <stdint.h>
 #include <unistd.h>
@@ -28,6 +29,13 @@ int car_controller_init() {
     }
 
     if(pi_mmio_init() < 0){
+        esp32_serial_close(esp32_fd);
+        esp32_fd = -1;
+        return -1;
+    }
+
+    if(autonomy_init() < 0){
+        pi_mmio_close();
         esp32_serial_close(esp32_fd);
         esp32_fd = -1;
         return -1;
@@ -67,7 +75,8 @@ void car_controller_loop(volatile sig_atomic_t *keep_running) {
         was_pressed = pressed;
 
         if(robot_running){
-            esp32_serial_send(esp32_fd, "F 120\n");
+//            esp32_serial_send(esp32_fd, "F 120\n");
+            esp32_serial_send(esp32_fd, autonomy_next_command());
         }
 
         usleep(LOOP_DELAY_US);
@@ -83,6 +92,7 @@ void car_controller_cleanup() {
         esp32_fd = -1;
     }
 
+    autonomy_cleanup();
     pi_mmio_close();
 }
 
