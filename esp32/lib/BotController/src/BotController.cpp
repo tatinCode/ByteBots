@@ -182,7 +182,6 @@ void BotController::handleCommand(String command){
     _lastMoveCommandMs = millis();
 }
 
-
 void BotController::forward(int speed){
     setWheels(speed, speed, speed, speed);
 }
