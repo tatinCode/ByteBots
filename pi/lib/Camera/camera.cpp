@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 
 #include <stdio.h>
+#include <unistd.h>
 
 #define CAMERA_DEVICE "/dev/video0"
 
@@ -25,12 +26,30 @@ int camera_init(int width, int height){
         return -1;
     }
 
+    camera.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('B', 'G', 'R', '3'));
     camera.set(cv::CAP_PROP_FRAME_WIDTH, width);
     camera.set(cv::CAP_PROP_FRAME_HEIGHT, height);
 
     printf("[CAMERA] Requested %dx%d\n", width, height);
 
-    if(!camera.read(frame_buffer) || frame_buffer.empty()){
+//    if(!camera.read(frame_buffer) || frame_buffer.empty()){
+//        printf("[CAMERA ERROR] Failed to read first frame\n");
+//        camera.release();
+//        return -1;
+//    }
+
+    int captured = 0;
+
+    for(int i = 0; i < 10; i++){
+        if(!camera.read(frame_buffer) || frame_buffer.empty()){
+            captured = 1;
+            break;
+        }
+
+        usleep(100 * 1000);
+    }
+
+    if(!captured){
         printf("[CAMERA ERROR] Failed to read first frame\n");
         camera.release();
         return -1;
