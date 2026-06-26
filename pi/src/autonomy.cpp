@@ -13,5 +13,5 @@ const char *autonomy_next_command(void){
 }
 
 void autonomy_cleanup(void){
-
+    camera_cleanup();
 }
