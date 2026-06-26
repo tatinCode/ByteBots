@@ -10,7 +10,7 @@ static int camera_height = 0;
 static int camera_initialized = 0;
 
 int camera_init(int width, int height){
-    if(camera.isClosed()){
+    if(camera.isOpened()){
         camera.release();
     }
 
