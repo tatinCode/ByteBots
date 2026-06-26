@@ -13,8 +13,8 @@
  */
 
 BotController::BotController()
-    : _front(19, 18, 5, true, 4, 17, 16, false),
-    _back(14, 27, 26, false, 32, 25, 33, true),
+    :_front(14, 27, 26, false, 32, 25, 33, true),
+    _back(19, 18, 5, true, 4, 17, 16, false),
     _armed(false),
     _lastMoveCommandMs(0){ }
 
