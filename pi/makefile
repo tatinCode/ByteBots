@@ -21,9 +21,11 @@ OBJS = $(C_OBJS) $(CPP_OBJS)
 
 INCLUDES = $(wildcard $(LIB_DIR)/*)
 
-CFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES))
-CXXFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES))
-LDLIBS = 
+OPENCV_FLAGS = $(shell pkg-config --cflags opencv4)
+OPENCV_LIBS = $(shell pkg-config --libs opencv4)
+
+CXXFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES)) $(OPENCV_FLAGS)
+LDLIBS = $(OPENCV_LIBS) 
 
 .PHONY: all run clean
 
