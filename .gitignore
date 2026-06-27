@@ -2,6 +2,7 @@
 build/
 pi/build/
 pi/bin/
+bin/
 
 # Arduino CLI artifacts
 *.elf

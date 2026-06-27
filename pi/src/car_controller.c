@@ -3,8 +3,10 @@
 #include "esp32_serial.h"
 #include "pi_mmio.h"
 #include "pi_config.h"
+#include "autonomy.h"
 
 #include <stdint.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
 #include <time.h>
@@ -22,12 +24,27 @@ static uint64_t get_time_us();
 
 
 int car_controller_init() {
+    printf("[PI] Opening ESP32 serial: %s\n", ESP32_DEVICE);
+
     esp32_fd = esp32_serial_open(ESP32_DEVICE);
     if(esp32_fd < 0){
+        printf("[PI ERROR] Failed to open ESP32 serial\n");
+        return -1;
+    }
+    printf("[PI] Initializing GPIO MMIO\n");
+
+    if(pi_mmio_init() < 0){
+        printf("[PI ERROR] Failed to initialize GPIO MMIO\n");
+        esp32_serial_close(esp32_fd);
+        esp32_fd = -1;
         return -1;
     }
 
-    if(pi_mmio_init() < 0){
+    
+    printf("[PI] Initializing autonomy\n");
+
+    if(autonomy_init() < 0){
+        printf("[PI ERROR] Failed to initialize autonomy\n");    pi_mmio_close();
         esp32_serial_close(esp32_fd);
         esp32_fd = -1;
         return -1;
@@ -36,7 +53,12 @@ int car_controller_init() {
     pi_gpio_set_input(BUTTON_GPIO);
     pi_gpio_set_pull_up(BUTTON_GPIO);
 
+    printf("[PI] Button GPIO: %d\n", BUTTON_GPIO);
+    printf("[PI] Sending DISARM\n");
+
     esp32_serial_send(esp32_fd, "DISARM\n");
+
+    printf("[PI] Ready. Press button to toggle robot.\n");
 
     return 0;
 }
@@ -51,14 +73,18 @@ void car_controller_loop(volatile sig_atomic_t *keep_running) {
         int debounce_elapsed = now_us - last_button_press_us > DEBOUNCE_US;
 
         if(pressed && !was_pressed && debounce_elapsed){
+            printf("[PI] Button pressed\n");
+
             last_button_press_us = now_us;
 
             robot_running = !robot_running;
 
             if(robot_running){
+                printf("[PI] Robot running: sending ARM\n");
                 esp32_serial_send(esp32_fd, "ARM\n");
             }
             else{
+                printf("[PI] Robot stopped: sending S + DISARM\n");
                 esp32_serial_send(esp32_fd, "S\n");
                 esp32_serial_send(esp32_fd, "DISARM\n");
             }
@@ -67,7 +93,8 @@ void car_controller_loop(volatile sig_atomic_t *keep_running) {
         was_pressed = pressed;
 
         if(robot_running){
-            esp32_serial_send(esp32_fd, "F 120\n");
+//            esp32_serial_send(esp32_fd, "F 120\n");
+            esp32_serial_send(esp32_fd, autonomy_next_command());
         }
 
         usleep(LOOP_DELAY_US);
@@ -83,6 +110,7 @@ void car_controller_cleanup() {
         esp32_fd = -1;
     }
 
+    autonomy_cleanup();
     pi_mmio_close();
 }
 

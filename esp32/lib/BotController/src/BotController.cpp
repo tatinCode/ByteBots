@@ -13,8 +13,8 @@
  */
 
 BotController::BotController()
-    : _front(19, 18, 5, true, 4, 17, 16, false),
-    _back(14, 27, 26, true, 32, 25, 33, false),
+    :_front(14, 27, 26, true, 32, 25, 33, false),
+    _back(19, 18, 5, false, 4, 17, 16, true),
     _armed(false),
     _lastMoveCommandMs(0){ }
 
@@ -181,7 +181,6 @@ void BotController::handleCommand(String command){
 
     _lastMoveCommandMs = millis();
 }
-
 
 void BotController::forward(int speed){
     setWheels(speed, speed, speed, speed);
