@@ -9,6 +9,7 @@
 #define ESP32_DEVICE "/dev/ttyUSB0"
 #define ESP32_SERIAL_BAUD_RATE 115200
 
+#define CAMERA_DEVICE "/dev/video0"
 #define CAMERA_WIDTH 640
 #define CAMERA_HEIGHT 480
 

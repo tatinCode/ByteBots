@@ -1,17 +1,13 @@
 #include "camera.h"
+#include "pi_config.h"
 
 #include <opencv2/opencv.hpp>
 
 #include <stdio.h>
 #include <unistd.h>
 
-#define CAMERA_DEVICE "/dev/video0"
-
 static cv::VideoCapture camera;
 static cv::Mat frame_buffer;
-
-static int camera_width = 0;
-static int camera_height = 0;
 static int camera_initialized = 0;
 
 int camera_init(int width, int height){
@@ -41,7 +37,7 @@ int camera_init(int width, int height){
     int captured = 0;
 
     for(int i = 0; i < 10; i++){
-        if(!camera.read(frame_buffer) || frame_buffer.empty()){
+        if(camera.read(frame_buffer) || frame_buffer.empty()){
             captured = 1;
             break;
         }
