@@ -37,7 +37,7 @@ int camera_init(int width, int height){
     int captured = 0;
 
     for(int i = 0; i < 10; i++){
-        if(camera.read(frame_buffer) || !frame_buffer.empty()){
+        if(camera.read(frame_buffer) && !frame_buffer.empty()){
             captured = 1;
             break;
         }
