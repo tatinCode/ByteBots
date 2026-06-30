@@ -3,12 +3,49 @@
 
 #include <opencv2/opencv.hpp>
 
+#include <libcamera/span/span.h>
+#include <libcamera/camera.h>
+#include <libcamera/camera_manager.h>
+#include <libcamera/framebuffer.h>
+#include <libcamera/framebuffer_allocator.h>
+#include <libcamera/formats.h>
+#include <libcamera/request.h>
+#include <libcamera/stream.h>
+
+#include <algorithm>
+#include <condition_variable>
+#include <memory>
+#include <mutex>
+#include <vector>
+#include <sys/mman.h>
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 
-static cv::VideoCapture camera;
-static cv::Mat frame_buffer;
+using namespace libcamera;
+
+static std::unique_ptr<CameraManager> camera_manager;
+static std::shared_ptr<Camera> camera_device;
+static std::unique_ptr<CameraConfiguration> camera_config;
+static std::unique_ptr<FrameBufferAllocator> allocator;
+static Stream *camera_stream = nullptr;
+static std::unique_ptr<Request> capture_request;
+
+static void *mapped_buffer = MAP_FAILED;
+static size_t mapped_buffer_size = 0;
+
+static std::mutex caputure_mutex;
+static std::condition_variable capture_cv;
+static bool frame_ready = false;
+static bool request_started = false;
+static Request *completed_request = nullptr;
+
+static int config_width = 0;
+static int config_length = 0;
+static int config_channels = 0;
 static int camera_initialized = 0;
+
+static void request_completed(Request *request);
 
 int camera_init(int width, int height){
     if(camera.isOpened()){
@@ -91,4 +128,15 @@ void camera_cleanup(){
     camera_initialized = 0;
 }
 
+
+static void request_completed(Request *request){
+    if(request->status() == Request::RequestCancelled){
+        return;
+    }
+
+    std::lock_guard<std::mutex> lock(caputure_mutex);
+    completed_request = request;
+    frame_ready = true;
+    capture_cv.notify_one();
+}
 

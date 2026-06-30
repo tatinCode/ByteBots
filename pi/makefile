@@ -24,9 +24,12 @@ INCLUDES = $(wildcard $(LIB_DIR)/*)
 OPENCV_FLAGS = $(shell pkg-config --cflags opencv4)
 OPENCV_LIBS = $(shell pkg-config --libs opencv4)
 
+LIBCAMERA_FLAGS = $(shell pkg-config --cflags libcamera)
+LIBCAMERA_LIBS = $(shell pkg-config --libs libcamera)
+
 CFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES))
-CXXFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES)) $(OPENCV_FLAGS)
-LDLIBS = $(OPENCV_LIBS) 
+CXXFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR) $(addprefix -I, $(INCLUDES)) $(OPENCV_FLAGS) $(LIBCAMERA_FLAGS)
+LDLIBS = $(OPENCV_LIBS) $(LIBCAMERA_LIBS)
 
 .PHONY: all run clean
 
