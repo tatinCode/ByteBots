@@ -253,7 +253,7 @@ void camera_release_frame(CameraFrame *frame){
 void camera_cleanup(){
     printf("[CAMERA] Cleaning up camera\n");
 
-    if(camera_device && initialized){
+    if(camera_device && camera_initialized){
             camera_device->stop();
             camera_device->requestCompleted.disconnect(request_completed);
 
