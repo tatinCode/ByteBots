@@ -9,25 +9,17 @@ int autonomy_init(void){
         return -1;
     }
 
-    CameraFrame frame;
-
-    if(camera_capture(&frame) < 0){
-        printf("[AUTONOMY ERROR] Failed to capture frame\n");
-        camera_cleanup();
-        return -1;
-    }
-
-    printf("[AUTONOMY] Test frame captured: %dx%d channels:%d\n",
-            frame.width,
-            frame.height,
-            frame.channels);
-
-    camera_release_frame(&frame);
-
     return 0;
 }
 
 const char *autonomy_next_command(void){
+    CameraFrame frame;
+
+    if(camera_capture(&frame) < 0){
+        return "S\n";
+    }
+
+    camera_release_frame(&frame);
 
     return "F 120\n";
 }
