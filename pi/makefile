@@ -13,6 +13,7 @@ C_SRCS = $(wildcard $(SRC_DIR)/*.c) \
 
 CPP_SRCS = $(wildcard $(SRC_DIR)/*.cpp) \
 		   $(wildcard $(LIB_DIR)/Camera/*.cpp)
+		   $(wildcard $(LIB_DIR)/Vision/*.cpp)
 
 C_OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(C_SRCS))
 CPP_OBJS = $(patsubst %.cpp, $(BUILD_DIR)/%.o, $(CPP_SRCS))
