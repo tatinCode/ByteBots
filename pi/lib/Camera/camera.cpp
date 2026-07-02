@@ -273,11 +273,6 @@ void camera_cleanup(){
 
     allocator.reset();
 
-    if(camera_device){
-        camera_device->release();
-        camera_device.reset();
-    }
-
     if(camera_manager){
         camera_manager->stop();
         camera_manager.reset();

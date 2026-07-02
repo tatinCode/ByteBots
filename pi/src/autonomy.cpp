@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 int autonomy_init(void){
-    if(camera_init camera_init(CAMERA_WIDTH, CAMERA_HEIGHT) < 0){
+    if(camera_init(CAMERA_WIDTH, CAMERA_HEIGHT) < 1){
         return -1;
     }
 
