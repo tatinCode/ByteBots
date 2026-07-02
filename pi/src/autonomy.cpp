@@ -1,6 +1,7 @@
 #include "autonomy.h"
 #include "camera.h"
 #include "pi_config.h"
+#include "vision.h"
 
 #include <stdio.h>
 
