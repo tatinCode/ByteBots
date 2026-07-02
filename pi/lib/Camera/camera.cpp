@@ -253,14 +253,10 @@ void camera_release_frame(CameraFrame *frame){
 void camera_cleanup(){
     printf("[CAMERA] Cleaning up camera\n");
 
-    if(camera_device){
-        if(camera_initialized){
+    if(camera_device && initialized){
             camera_device->stop();
             camera_device->requestCompleted.disconnect(request_completed);
-        }
 
-        camera_device->release();
-        camera_device.reset();
     }
 
     capture_request.reset();
@@ -272,6 +268,10 @@ void camera_cleanup(){
     }
 
     allocator.reset();
+    if(camera_device){
+        camera_device->release();
+        camera_device.reset();
+    }
 
     if(camera_manager){
         camera_manager->stop();
