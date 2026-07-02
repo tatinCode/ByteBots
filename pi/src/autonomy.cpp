@@ -1,13 +1,25 @@
 #include "autonomy.h"
-
 #include "camera.h"
 #include "pi_config.h"
 
+#include <stdio.h>
+
 int autonomy_init(void){
-    return camera_init(CAMERA_WIDTH, CAMERA_HEIGHT);
+    if(camera_init(CAMERA_WIDTH, CAMERA_HEIGHT) < 0){
+        return -1;
+    }
+
+    return 0;
 }
 
 const char *autonomy_next_command(void){
+    CameraFrame frame;
+
+    if(camera_capture(&frame) < 0){
+        return "S\n";
+    }
+
+    camera_release_frame(&frame);
 
     return "F 120\n";
 }
