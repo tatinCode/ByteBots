@@ -30,7 +30,7 @@ const char *autonomy_next_command(void){
         FILE *file = fopen("/tmp/colon_frame.ppm", "wb");
 
         if(file){
-            fprintf(file, "P6\n%d %d\n255\n", configured_width, configured_height);
+            fprintf(file, "P6\n%d %d\n255\n", frame.width, frame.height);
             fwrite(frame.data, 1, frame.width * frame.height * frame.channels, file);
             fclose(file);
             printf("[AUTONOMY] Wrote frame to /tmp/colon_frame.ppm\n");
