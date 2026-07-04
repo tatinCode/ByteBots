@@ -24,6 +24,15 @@ const char *autonomy_next_command(void){
         return "S\n";
     }
 
+    FILE *file = fopen("/tmp/colon_frame.ppm", "wb");
+
+    if(file){
+        fprintf(file, "P6\n%d %d\n255\n", configured_width, configured_height);
+        fwrite(frame.data, 1, frame.width * frame.height * frame.channels, file);
+        close(file);
+        printf("[AUTONOMY] Wrote frame to /tmp/colon_frame.ppm\n");
+    }
+
     VisionResult result = vision_analyze(&frame);
     camera_release_frame(&frame);
 

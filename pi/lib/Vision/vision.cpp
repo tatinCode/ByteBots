@@ -45,7 +45,7 @@ VisionResult vision_analyze(const CameraFrame *frame){
     result.brightness = (float)brightness_sum / (float)samples;
     result.confidence = result.brightness / 255.0f;
 
-    if(result.brightness > 20.0f && result.confidence < 245.0f){
+    if(result.brightness > 20.0f && result.brightness < 245.0f){
         result.valid = 1;
     }
 

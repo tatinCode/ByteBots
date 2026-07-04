@@ -6,8 +6,7 @@
 #include <libcamera/framebuffer.h>
 #include <libcamera/framebuffer_allocator.h>
 #include <libcamera/formats.h>
-#include <libcamera/request.h>
-#include <libcamera/stream.h>
+#include <libcamera/request.h> #include <libcamera/stream.h>
 
 #include <algorithm>
 #include <condition_variable>
@@ -214,8 +213,6 @@ int camera_capture(CameraFrame *frame){
         printf("[CAMERA ERROR] Failed to queue capture request\n");
         return -1;
     }
-
-        
 
     {
         std::unique_lock<std::mutex> lock(capture_mutex);
