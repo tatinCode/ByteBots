@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-static wrote_debug_frame = 0;
+static int wrote_debug_frame = 0;
 
 int autonomy_init(void){
     if(camera_init(CAMERA_WIDTH, CAMERA_HEIGHT) < 0){
